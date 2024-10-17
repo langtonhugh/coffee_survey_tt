@@ -61,32 +61,3 @@ ggplot(data = political_long) +
 # Save.
 ggsave(filename = "visuals/political_milk_draft.png",
        height = 12, width = 16, unit = "cm", dpi = 300)
-
-# Handling for more specific preferences.
-# Final clean. Drop missing political affiliation and randomly select one 
-# of their milk preferences, for people that chose > 1. 
-waf_data <- coffee_survey_long %>%
-  group_by(political_affiliation, dairy) %>% 
-  summarize(n = n()) %>% 
-  ungroup() %>% 
-  drop_na(political_affiliation) %>% 
-  filter(dairy != "None") %>% 
-  group_by(political_affiliation) %>% 
-  mutate(props = round(100*n/sum(n), 2)) %>% 
-  ungroup()
-
-# Make waffle (draft).
-ggplot(data = waf_data,
-         mapping = aes(fill = dairy, values = props)) +
-  geom_waffle(flip = TRUE) +
-  facet_wrap(~political_affiliation, nrow = 2, scales = "free") +
-  scale_fill_brewer(palette = "Set3") +
-  theme_bw()
-
-  
-  
-  
-  
-  
-
-
