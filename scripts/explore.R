@@ -3,7 +3,6 @@ library(readr)
 library(tidyr)
 library(dplyr)
 library(ggplot2)
-library(waffle)
 
 # Load data.
 coffee_survey <- read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2024/2024-05-14/coffee_survey.csv')
@@ -54,7 +53,7 @@ ggplot(data = political_long) +
   scale_fill_brewer(palette = "Set2") +
   scale_y_continuous(labels = scales::percent) +
   labs(x = NULL, y = NULL, fill = NULL,
-       title = "Do republicans prefer 'real' milk in their coffee?",
+       title = "Do democrats prefer milk alternatives in their coffee?",
        caption = "Data source: Great American Coffee Taste Test (2023)") +
   theme(legend.position = "bottom") 
 
